@@ -8,7 +8,7 @@ This App Allows You to Manage Roles and Permissions
  - Mysql 8.1.2
  - Php 8.1.2
  - Or Install Xampp, Wampp...
- - 
+ 
 ## Install App To Windows
 
  - Download or execute Git Clone In This Repository
