@@ -2,16 +2,16 @@
 	
 	class Rol {
 
-        private $id;
-        private $name;
-        private $attribute;
-        private $db;
+    private $id;
+    private $name;
+    private $attribute;
+    private $db;
 
-        public function __construct(){
-            $this->db = DataBase::connect();
-        }
+    public function __construct(){
+        $this->db = DataBase::connect();
+    }
 
-        function getId(){
+    function getId(){
 			return $this->id;
 		}
 
@@ -34,8 +34,16 @@
 		function setAttribute($attribute){
 			$this->attribute = $attribute;
 		}
+  
+    public static function isRolRelated($idRol) {
+      $sql = "SELECT true as isRol FROM user as u INNER JOIN rol as r ON u.idrol = r.id where u.idrol = {intval($idRol)} LIMIT 1";
+      
+      $isRolRelated = DataBase::connect()->query($sql)->fetch_object()->isRol ?? FALSE;
 
-        public function getAll(){
+      return $isRolRelated;
+    }
+
+    public function getAll(){
 			$sql = "SELECT * FROM rol";
 			$rols = $this->db->query($sql);
 			return $rols;
@@ -60,31 +68,31 @@
 		}
 
 		public function update() {
-            $sql = "UPDATE rol SET name='{$this->getName()}', attribute='{$this->getAttribute()}' WHERE id='{$this->getId()}'";
-            $save = $this->db->query($sql);
+      $sql = "UPDATE rol SET name='{$this->getName()}', attribute='{$this->getAttribute()}' WHERE id='{$this->getId()}'";
+      $save = $this->db->query($sql);
 
-            $result = false;
+      $result = false;
 
 			if ($save) {
 				$result = true;
 			}
 
 			return $result;
-        }
+    }
 
 		public function save() {
-            $sql = "INSERT INTO rol VALUES (null, '{$this->getName()}', '{$this->getAttribute()}')";
-            $save = $this->db->query($sql);
+      $sql = "INSERT INTO rol VALUES (null, '{$this->getName()}', '{$this->getAttribute()}')";
+      $save = $this->db->query($sql);
 
-            $result = false;
+      $result = false;
 
 			if ($save) {
 				$result = true;
 			}
 
 			return $result;
-        }
-
     }
+  }
+
 
 ?>
