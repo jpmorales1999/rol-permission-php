@@ -2,20 +2,20 @@
 	
 	class User {
 
-        private $id;
-        private $name;
-        private $lastname;
+    private $id;
+    private $name;
+    private $lastname;
 		private $attribute;
 		private $email;
 		private $password;
-        private $idrol;
-        private $db;
+    private $idrol;
+    private $db;
 
-        public function __construct(){
-            $this->db = DataBase::connect();
-        }
+    public function __construct(){
+        $this->db = DataBase::connect();
+    }
 
-        function getId(){
+    function getId(){
 			return $this->id;
 		}
 
@@ -23,7 +23,7 @@
 			$this->id = $id;
 		}
 
-        function getName(){
+    function getName(){
 			return $this->name;
 		}
 
@@ -31,7 +31,7 @@
 			$this->name = $name;
 		}
 
-        function getLastname(){
+    function getLastname(){
 			return $this->lastname;
 		}
 
@@ -63,7 +63,7 @@
 			$this->password = $password;
 		}
 
-        function getIdrol(){
+    function getIdrol(){
 			return $this->idrol;
 		}
 
@@ -71,7 +71,7 @@
 			$this->idrol = $idrol;
 		}
 
-        public function getAll() {
+    public function getAll() {
 			$sql = "SELECT u.id, u.name, u.lastname, u.attribute, u.idrol, u.email, r.name as rol FROM user as u INNER JOIN rol as r ON u.idrol=r.id WHERE u.status=1";
 			$users = $this->db->query($sql);
 			return $users;
@@ -83,37 +83,37 @@
 			return $user;
 		}
 
-        public function save() {
-            $sql = "INSERT INTO user VALUES (null, '{$this->getName()}', '{$this->getLastname()}', '{$this->getAttribute()}', '{$this->getEmail()}', '{$this->getPassword()}', '{$this->getIdrol()}', 1)";
-            $save = $this->db->query($sql);
+    public function save() {
+      $sql = "INSERT INTO user VALUES (null, '{$this->getName()}', '{$this->getLastname()}', '{$this->getAttribute()}', '{$this->getEmail()}', '{$this->getPassword()}', '{$this->getIdrol()}', 1)";
+      $save = $this->db->query($sql);
 
-            $result = false;
+      $result = false;
 
 			if ($save) {
 				$result = true;
 			}
 
 			return $result;
-        }
+    }
 
 		public function update() {
-            $sql = "UPDATE user SET name='{$this->getName()}', lastname='{$this->getLastname()}', idrol='{$this->getIdrol()}', attribute='{$this->getAttribute()}' WHERE id='{$this->getId()}'";
-            $save = $this->db->query($sql);
+      $sql = "UPDATE user SET name='{$this->getName()}', lastname='{$this->getLastname()}', idrol='{$this->getIdrol()}', attribute='{$this->getAttribute()}' WHERE id='{$this->getId()}'";
+      $save = $this->db->query($sql);
 
-            $result = false;
+      $result = false;
 
 			if ($save) {
 				$result = true;
 			}
 
 			return $result;
-        }
+    }
 
 		public function delete() {
 			$sql = "UPDATE user SET status=0 WHERE id='{$this->getId()}'";
-            $save = $this->db->query($sql);
+      $save = $this->db->query($sql);
 
-            $result = false;
+      $result = false;
 
 			if ($save) {
 				$result = true;
@@ -146,6 +146,6 @@
 			return $result;
 		}
 
-    }
+  }
 
 ?>

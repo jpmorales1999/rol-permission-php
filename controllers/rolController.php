@@ -1,6 +1,7 @@
 <?php 
 
-    require_once 'models/rol.php';
+  require_once 'models/rol.php';
+  require_once 'models/user.php';
 	require_once 'models/permission.php';
 
 	class RolController {
@@ -47,9 +48,15 @@
 					$rol = new Rol();
 					$rol->setId($id);	
 					$rol->setName($name);	
+
+          echo "<script>console.log('Console:  nooo}  asd' );</script>";
+          $rol->updateUsersPermission($permissions);
+
 					// Convertir Array a String - Están separados por " " -> Espacio en blanco, le agrego una coma para mejor visualización
 					$string = implode(", ", $permissions);
-					$rol->setAttribute($string);	
+          
+					$rol->setAttribute($string);
+
 					$save = $rol->update();
 
 					if ($save) {
@@ -67,7 +74,7 @@
 			header('Location: ' . base_url . 'rol/index');
 		}
 
-        public function save(){
+    public function save(){
 			Utils::isAdmin();
 			if(isset($_POST)){
 				$name = isset($_POST['name']) ? strtoupper($_POST['name']) : false;
@@ -97,6 +104,6 @@
 			header('Location: ' . base_url . 'rol/index');
 		}
 
-    }
+  }
 
 ?>
