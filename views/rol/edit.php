@@ -21,12 +21,11 @@
                         <label for="attribute" class="form-label">Add Permissions</label>
                         <select name="permissions[]" class="form-control js-example-basic-multiple" multiple>
                             <?php // Convertir String En Array
-                              $arrayAttributes = explode(", ", $rol->attribute);
-                              
-                              while ($permission = $permissions->fetch_object()) :
-                                echo Utils::comparePermission($arrayAttributes, $permission); 
-                              endwhile; 
+                                $arrayAttributes = explode(", ", $rol->attribute);
                             ?>
+                            <?php while ($permission = $permissions->fetch_object()) : ?>
+                                <?php echo Utils::comparePermission($arrayAttributes, $permission); ?>
+                            <?php endwhile; ?>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
