@@ -13,6 +13,7 @@ This App Allows You to Manage Roles and Permissions
 
  - Download or execute Git Clone In This Repository
  - Access The C:xampp/htdocs Folder and Save the Application
+ - Rename the Role-Permission-PHP folder to role-permission
  - Create New Data Base With Name rol-permission
  - Import File rol-permission.sql From Folder database/rol-permission.sql In the App
  - Execute Services and Access localhost/rol-permission
