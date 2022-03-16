@@ -32,7 +32,17 @@
                             <td><?php echo $rol->name ?></td>
                             <td><?php echo $rol->attribute ?></td>
                             <td>
+                              <?php
+                              if (!Rol::isRolRelated($rol->id)) {
+                              ?>
                                 <a href="<?php echo base_url ?>rol/edit&id=<?php echo $rol->id ?>" class="btn btn-warning">Edit</a>
+                              <?php
+                              } else {
+                                ?>
+                                <p class="btn btn-secondary disabled">Edit</p>
+                                <?php
+                              }
+                              ?>
                             </td>
                         </tr>
                     <?php endwhile; ?>
