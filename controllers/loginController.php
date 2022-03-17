@@ -58,7 +58,7 @@ class LoginController
 		if (isset($_SESSION['identity'])) {
 			header('Location: ' . base_url . 'login/listPermissions');
 		} else {
-			header('Location: ' . base_url);
+			header('Location: ' . base_url . 'login/index');
 		}
 	}
 
@@ -76,6 +76,6 @@ class LoginController
 			unset($_SESSION['admin']);
 		}
 
-		header('Location: ' . base_url);
+		header('Location: ' . base_url . 'login/index');
 	}
 }
