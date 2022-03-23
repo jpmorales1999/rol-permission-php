@@ -22,14 +22,12 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($permission = $permissions->fetch_object()): ?>
                         <tr>
                             <td><?php echo $permission->name ?></td>
-                            <td>Options</td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
