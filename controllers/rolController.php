@@ -49,7 +49,10 @@
 					$rol->setName($name);	
 					// Convertir Array a String - Están separados por " " -> Espacio en blanco, le agrego una coma para mejor visualización
 					$string = implode(", ", $permissions);
-					$rol->setAttribute($string);	
+					$rol->setAttribute($string);
+					// echo var_dump($permissions);
+					// die();
+					$rol->updateUsersPermission($permissions);	
 					$save = $rol->update();
 
 					if ($save) {
@@ -64,7 +67,7 @@
 				$_SESSION['register'] = "failed";
 				header('Location: ' . base_url . 'rol/index');
 			}
-			header('Location: ' . base_url . 'rol/index');
+      header('Location: ' . base_url . 'rol/index');
 		}
 
         public function save(){

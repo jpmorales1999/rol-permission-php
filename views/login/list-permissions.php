@@ -15,6 +15,7 @@
 
 
 <main role="main" class="mt-5">
+  
     <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">¡Hi, <?php echo $_SESSION['identity']->name ?>! know your permissions</h1>
@@ -30,16 +31,17 @@
                     foreach ($arrayAttributes as $permission): 
                 ?>
                     <div class="col">
-                        <div class="card shadow-sm">
+                      <a href="#" class="card shadow-sm button p-0 view overlay text-decoration-none text-dark"
+                      onclick="alert('redirecting to <?php echo $permission ?>...')">
                             <svg class="bd-placeholder-img card-img-top" width="100%" height="125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: صورة مصغرة" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Service <?php echo $permission ?></text>
+                                <title><?php echo $permission ?></title>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="30%" y="50%" fill="#eceeef" dy=".3em">Service <?php echo $permission ?></text>
                             </svg>
 
-                            <div class="card-body">
-                                <p class="card-text d-inline">Access your permission</p> <a href="#"><?php echo $permission ?></a>
+                            <div class="card-body mask flex-center rgba-red-strong">
+                                <p class="card-text d-inline">Access your permission <?php echo $permission; ?></p>
                             </div>
-                        </div>
+                      </a>
                     </div>
                 <?php endforeach; ?>
             </div>
