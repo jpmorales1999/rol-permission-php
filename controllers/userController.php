@@ -112,7 +112,7 @@
 
 		public function update () {
 			Utils::isAdmin();
-			if(isset($_POST)){
+			if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['idrol']) && isset($_POST['permissions'])){
 				$id = isset($_POST['id']) ? $_POST['id'] : false;
 				$name = isset($_POST['name']) ? strtoupper($_POST['name']) : false;
 				$lastname = isset($_POST['lastname']) ? strtoupper($_POST['lastname']) : false;
@@ -129,7 +129,6 @@
 					$string = implode(", ", $permissions);
 					$user->setAttribute($string);
 					$save = $user->update();
-
 					if ($save) {
 						$_SESSION['register'] = "completed";
 					} else {
@@ -138,10 +137,31 @@
 				} else {
 					$_SESSION['register'] = "failed";
 				}
-			} else {
+			} else if(isset($_GET['idUser']) && isset($_GET['idRol'])) {
+				$idUser = isset($_GET['idUser']) ? $_GET['idUser'] : '-1';
+				$idRol = isset($_GET['idRol']) ? $_GET['idRol'] : '-1';
+        $user = new User();
+
+        $rol_sql = "SELECT attribute as atr FROM rol WHERE id = {$idRol}";
+
+        $rol_permission_db = DataBase::connect()->query($rol_sql)->fetch_object()->atr;
+
+        $user->setId($idUser);	
+        if(!empty($rol_permission_db))
+        $user->setAttribute($rol_permission_db);
+
+        $save = $user->update_rol_user();
+        
+        if ($save) {
+          $_SESSION['register'] = "completed";
+        } else {
+          $_SESSION['register'] = "failed";
+        }
+      } else {
 				$_SESSION['register'] = "failed";
 				header('Location: ' . base_url . 'user/index');
 			}
+
 			header('Location: ' . base_url . 'user/index');
 		}
 	}

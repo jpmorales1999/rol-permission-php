@@ -109,6 +109,19 @@
 			return $result;
         }
 
+    public function update_rol_user() {
+      $sql = "UPDATE user SET attribute='{$this->getAttribute()}' WHERE id='{$this->getId()}'";
+      $save = $this->db->query($sql);
+
+      $result = false;
+
+      if ($save) {
+        $result = true;
+      }
+
+      return $result;
+    }
+
 		public function delete() {
 			$sql = "UPDATE user SET status=0 WHERE id='{$this->getId()}'";
             $save = $this->db->query($sql);

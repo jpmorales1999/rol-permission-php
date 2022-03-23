@@ -37,6 +37,7 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="<?php echo base_url ?>user/update&idUser=<?php echo $user->id ?>&idRol=<?php echo $user->idrol ?>" class="btn btn-secondary">Restore Permissions</a>
                 </form>
             </div>
         </div>
