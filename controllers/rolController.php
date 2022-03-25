@@ -70,7 +70,7 @@
       header('Location: ' . base_url . 'rol/index');
 		}
 
-        public function save(){
+    public function save(){
 			Utils::isAdmin();
 			if(isset($_POST)){
 				$name = isset($_POST['name']) ? strtoupper($_POST['name']) : false;
