@@ -27,17 +27,6 @@
                     <div class="mb-3">
                         <label for="rol" class="form-label">Rol</label>
                         <select class="form-control rols" name="idrol" id="idrol">
-                            <?php 
-                                function compareRol($idRol, $rol) 
-                                {
-                                    if ($idRol == $rol->id) {
-                                        // Option With Selected
-                                        return "<option value='$rol->id' selected>$rol->name</option>";
-                                    } else {
-                                        return "<option value='$rol->id'>$rol->name</option>";
-                                    }
-                                }
-                            ?>
                             @foreach($rols as $rol)
                                 <?php echo compareRol($user->idrol, $rol); ?>
                             @endforeach
@@ -48,31 +37,10 @@
                         <label for="attribute" class="form-label">Add Permissions</label>
                         <select id="permissions" name="permissions[]" class="form-control js-example-basic-multiple" multiple>
                             <?php 
-
                                 $arrayAttributes = explode(", ", $user->attribute);
-
-                                function comparePermission ($array, $permission) {
-                                    // Contador para determinar si el permiso no ha sido repetido
-                                    $count = 0;
-
-                                    // Recorrer el Array de atributos actuales comparando con cada uno de los permisos de la tabla Permission
-                                    foreach ($array as $item) {
-                                        if ($item == $permission->name) {
-                                            $count++;
-                                            // Option con Selected
-                                            return "<option value='$permission->name' selected>$permission->name</option>";
-                                        }
-                                    }
-
-                                    if ($count == 0) {
-                                        // En caso de que no encuentre permisos sementajes, mostrar option sin checked 
-                                        return "<option value='$permission->name'>$permission->name</option>"; 
-                                    }
-                                }
-
                             ?>
                             @foreach($permissions as $permission)
-                                <?php echo comparePermission($arrayAttributes, $permission); ?>
+                                <?php echo comparePermission($arrayAttributes, $permission) ?>
                             @endforeach
                         </select>
                     </div>

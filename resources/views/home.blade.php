@@ -30,7 +30,7 @@
                             </div>
                       </a>
                     </div>
-                <?php endforeach; ?>
+                @endforeach
             </div>
         </div>
     </div>
