@@ -60,10 +60,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Installation
 
-Run the services mysql and apache
-Create a new database in your enviroment local (EMPTY)
-Modify file .env with your data for the database
-Run the migration of the project with php artisan migrate
-Generate key laravel with command php artisan key:generate
-Execute in your terminal composer dump-autoload
+- Run the services mysql and apache
+- Create a new database in your enviroment local (EMPTY)
+- Modify file .env with your data for the database
+- Run the migration of the project with php artisan migrate
+- Generate key laravel with command php artisan key:generate
+- Execute in your terminal composer dump-autoload
 
