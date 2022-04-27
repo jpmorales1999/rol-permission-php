@@ -81,7 +81,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $rols = Rol::all();
         $permissions = Permission::all();
-        return view('user.edit', compact('user', 'rols', 'permissions'));
+        $activateJS = true;
+        return view('user.edit', compact('user', 'rols', 'permissions', 'activateJS'));
     }
 
     /**

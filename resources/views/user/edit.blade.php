@@ -16,6 +16,8 @@
                     <input type="hidden" name="_method" value="put">
 
                     <input type="hidden" id="idr" name="idr" value="{{ $user->idrol }}">
+                    <input type="hidden" id="id" name="id" value="{{ $user->id }}">
+                    <input type="hidden" id="permision_user" name="permision_user" value="{{ $user->attribute }}">
 
                     <input type="hidden" id="permision_user" name="permision_user" value="{{ $user->attribute }}">
 
@@ -35,6 +37,7 @@
 
                     <div class="mb-3 w-100">
                         <label for="attribute" class="form-label">Add Permissions</label>
+                        
                         <select id="permissions" name="permissions[]" class="form-control js-example-basic-multiple" multiple>
                             <?php 
                                 $arrayAttributes = explode(", ", $user->attribute);
@@ -43,6 +46,13 @@
                                 <?php echo comparePermission($arrayAttributes, $permission) ?>
                             @endforeach
                         </select>
+                    </div>
+                    
+                    <div class="form-control mb-3 w-100">
+                      <span class="form-label">Permisos especiales</span>
+                      <span class="button btn bg-warning" onclick="removePermissionAll()" id="removePermmission">quitar permisos especiales</span>
+                      <hr/>
+                      <span id="special_permission">Sin permisos adicionales al rol</span>
                     </div>
                     
                     @if(count($errors) >= 1)
