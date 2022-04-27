@@ -78,10 +78,28 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $restore = false;
         $user = User::findOrFail($id);
         $rols = Rol::all();
         $permissions = Permission::all();
-        return view('user.edit', compact('user', 'rols', 'permissions'));
+
+        $r = Rol::all()->where('id', $user->idrol)->first();
+
+        $u_permission = explode(', ',$user->attribute);
+        $r_permission = explode(', ',$r->attribute);
+        
+        $old_permission = array();
+        $special_permission = array();
+
+        if (!empty($u_permission))
+        foreach ($u_permission as $key => $attribute) {
+          if (!in_array($attribute, $r_permission)){ array_push($special_permission, $attribute); }
+          else { array_push($old_permission, $attribute); }
+        }
+
+        if(!empty($special_permission) || count($old_permission) != count($r_permission)) $restore = true;
+
+        return view('user.edit', compact('user', 'rols', 'permissions', 'restore'));
     }
 
     /**
@@ -93,20 +111,35 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = User::findOrFail($id);
+      if (!isset($request->restore)) {
         $request->validate([
-            'name' => 'required|string',
-            'idrol' => 'required',
-            'permissions' => 'required'
+          'name' => 'required|string',
+          'idrol' => 'required',
+          'permissions' => 'required'
         ]);
-
-        $user = User::findOrFail($id);
+        
         $user->name = strtoupper($request->input('name'));
         $user->idrol = $request->input('idrol');
         $string = implode(", ", $request->input('permissions'));
         $user->attribute = $string;
         $user->save();
-
+        
         return redirect(route('users.index'))->with('message', 'Added Successfully');
+        
+      } else {
+        $r = Rol::all()->where('id', $user->idrol)->first();
+        $user->attribute = $r->attribute;
+        $user->save();
+        $restore = false;
+        return redirect(route('users.edit', $id));
+      }
+    }
+
+    public function restorePremission(Request $request, $id)
+    {
+      print_r($request);
+      die();
     }
 
     /**

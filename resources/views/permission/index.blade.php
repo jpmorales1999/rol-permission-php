@@ -15,16 +15,18 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Options</th>
+                        {{-- <th>Options</th> --}}
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($permissions as $permission)
                         <tr>
                             <td>{{ $permission->name }}</td>
+                            {{-- 
                             <td>
                                 <a href="" class="btn btn-warning">Edit</a>
-                            </td>
+                            </td> 
+                            --}}
                         </tr>
                     @endforeach
                 </tbody>

@@ -57,6 +57,15 @@
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+                @if($restore)
+                <form action="{{ route('users.update', $user->id) }}" method="POST" class="pt-2">
+                  @csrf()
+                  <input type="hidden" name="_method" value="put">
+
+                  <input type="hidden" id="restore" name="restore" value="1">
+                  <button type="submit" class="btn btn-secondary">Restaurar permisos</button>
+                </form>
+                @endif
             </div>
         </div>      
     </div>
